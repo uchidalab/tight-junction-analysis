@@ -18,6 +18,8 @@ membrane_img_fpath_list = [os.path.join(data_dpath, 'membrane', d) for d in sort
 tj_img_fpath_list = os.listdir('{}\\tj'.format(data_dpath))
 tj_img_fpath_list = [os.path.join(data_dpath, 'tj', d) for d in sorted(tj_img_fpath_list)]
 
+pix_ths = [100]
+
 if os.path.exists(out_dpath) is False:
     os.makedirs(out_dpath)
     os.makedirs('{}\\gauss'.format(out_dpath))
@@ -26,8 +28,7 @@ if os.path.exists(out_dpath) is False:
     os.makedirs('{}\\label'.format(out_dpath))
 
 
-def get_labeled_image(img):
-    pix_ths=[100, 300]
+def get_labeled_image(img, pix_ths=[100]):
     labeled_imgs = []
     for pix_th in pix_ths:
         labelnum, labeling, contours, GoCs = cv2.connectedComponentsWithStats(img)
@@ -70,10 +71,10 @@ def extraction_boundary():
         _, img_th = cv2.threshold(img, ret, 255, cv2.THRESH_BINARY)
         cv2.imwrite(os.path.join(out_dpath, 'th', img_name), img_th)
 
-        labeled_imgs = get_labeled_image(img_th)
+        labeled_imgs = get_labeled_image(img_th, pix_ths=pix_ths)
         img_name = img_name.rsplit('.')[0]
-        cv2.imwrite(os.path.join(out_dpath, 'label', img_name + '_100.tif'), labeled_imgs[0])
-        cv2.imwrite(os.path.join(out_dpath, 'label', img_name + '_300.tif'), labeled_imgs[1])
+        for i, th in enumerate(pix_ths):
+            cv2.imwrite(os.path.join(out_dpath, 'label', img_name + '_th{}.tif'.format(th)), labeled_imgs[i])
 
 
 def get_binarization_parameter():
@@ -123,7 +124,7 @@ def lumi_area(pix_th):
 
 def evaluation():
     result_dict = {}
-    for pix_th in [100, 300]:
+    for pix_th in pix_ths:
         area_mat, lumi_mat = lumi_area(pix_th)
         result_dict['area_{}'.format(pix_th)] = area_mat
         result_dict['lumi_{}'.format(pix_th)] = lumi_mat

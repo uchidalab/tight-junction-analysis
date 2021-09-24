@@ -3,7 +3,7 @@ import os, itertools
 import glob
 
 
-data_name = 'XXXXsample' # directory of samples
+data_name = 'XXXsample' # directory of samples
 pwd_dpath = 'C:/XXX/YYY/ZZZ/' # please specify the current directory
 data_dpath = os.path.join(pwd_dpath, 'results', data_name, 'gauss')
 out_dpath = os.path.join(pwd_dpath, 'results', data_name, 'thin')
