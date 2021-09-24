@@ -8,7 +8,7 @@ The system requirements are described below.
     - opencv-python==3.4.2
     - pandas==1.1.3
 - ImageJ plugin
-    - LPIXEL
+    - LPIXEL (https://lpixel.net/en/products/lpixel-imagej-plugins/)
 
 ## Installation guide
 Installation procedures are described below.
@@ -17,6 +17,7 @@ Installation procedures are described below.
 
 ## Instructions
 Instruction procedures are described below.
-1. Running filtering process in main.py 
-1. Running line detection process in line_detection_imageJ.py using ImageJ
-1. Running boundary extraction and evaluation process in main.py
+1. Change the variable that specifies the name of the data in the code to the name of your data
+1. Run filtering process in main.py
+1. Run line detection process in line_detection_imageJ.py using ImageJ
+1. Run boundary extraction and evaluation process in main.py

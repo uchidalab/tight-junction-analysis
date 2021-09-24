@@ -6,10 +6,9 @@ import pandas as pd
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--flag', type=str, help='Please select process type (filter, label, or eval)')
-parser.add_argument('--name', type=str, help='Name of samples')
 args = parser.parse_args()
-data_name = args.name
 
+data_name = 'XXXsample'
 data_dpath = './data/{}'.format(data_name)
 out_dpath = './results/{}'.format(data_name)
 
