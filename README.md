@@ -1,4 +1,4 @@
-﻿# Tight Junction Analysis (Make Tricolormap and Histogram)
+﻿# Tight Junction Analysis
 ## System requirements
 The system requirements are described below.
 - Python 3.6.10
