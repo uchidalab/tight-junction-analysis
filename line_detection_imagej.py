@@ -15,14 +15,13 @@ min_length = 40
 
 def main():
 	for img_fpath in img_fpath_list:
-	    print(img_fpath)
-	    img_name = img_fpath.rsplit('\\', 1)[-1]
-	    imp = IJ.openImage(img_fpath)
-		
-	    imp2 = IJ.run(imp,"Lpx Filter2d", "filter=lineFilters__ fftswapquadrants linemode=lineByRotWs__ numangles={0} minlen={1}".format(angle, min_length))
-	    IJ.run('8-bit')
-	    IJ.saveAs(imp2,'tif', os.path.join(out_dpath, img_name))
-	    IJ.run('Close')
+		print(img_fpath)
+		img_name = img_fpath.rsplit('\\', 1)[-1]
+		imp = IJ.openImage(img_fpath)
+		imp2 = IJ.run(imp,"Lpx Filter2d", "filter=lineFilters__ fftswapquadrantslinemode=lineByRotWs__ numangles={0} minlen={1}".format(angle, min_length))
+		IJ.run('8-bit')
+		IJ.saveAs(imp2,'tif', os.path.join(out_dpath, img_name))
+		IJ.run('Close')
 
 if __name__ == '__builtin__':
 	main()
